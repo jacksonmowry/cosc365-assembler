@@ -115,5 +115,18 @@ public class Utils {
         return tokens.ToArray();
     }
 
+    public static int? ParseInt(string? s)
+    {
+        if (String.IsNullOrEmpty(s))
+        {
+            return null;
+        }
 
+        if (s.Length > 2 && s[0..2].Equals("0x"))
+        {
+            return Convert.ToInt32(s, 16);
+        }
+
+        return Int32.Parse(s);
+    }
 }
