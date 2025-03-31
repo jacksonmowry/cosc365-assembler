@@ -65,6 +65,11 @@
                 "div" => new Div(),
                 "rem" => new Rem(),
                 "and" => new And(),
+                "or" => new Or(),
+                "lsl" => new Lsl(),
+                "asr" => new Asr(),
+                "neg" => new Neg(),
+                "not" => new Not(),
                 _ => throw new Exception($"Unimplemented instruction {source[i].Tokens[0]}")
             };
 
