@@ -1,8 +1,8 @@
-public class Dup : Instruction.IInstruction
+public class Return : Instruction.IInstruction
 {
     private readonly int _offset = 0;
 
-    public Dup(int? offset)
+    public Return(int? offset)
     {
         if (offset != null)
         {
@@ -12,6 +12,6 @@ public class Dup : Instruction.IInstruction
 
     public int Encode()
     {
-        return (0b1100 << 28) | _offset;
+        return (0b0110 << 28) | _offset;
     }
 }
