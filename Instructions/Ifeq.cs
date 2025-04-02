@@ -1,8 +1,8 @@
-public class Ifpl : Instruction.IInstruction
+public class Ifeq : Instruction.IInstruction
 {
     private readonly int encodedOffset = 0;
 
-    public Ifpl (int? offset)
+    public Ifeq(int? offset)
     {
         if (offset != null)
         {
@@ -12,6 +12,6 @@ public class Ifpl : Instruction.IInstruction
     }
     public int Encode()
     {
-        return (0b10010 << 27) |  (0b11 << 25) | encodedOffset;
+        return (0b1000 << 28) |  (0b000 << 25) | encodedOffset;
     }
 }

@@ -1,12 +1,12 @@
 public class Ifgt : Instruction.IInstruction
 {
-    private readonly int _offset = 0;
+    private readonly int encodedOffset = 0;
 
     public Ifgt(int? offset)
     {
         if (offset != null)
         {
-            int encodedOffset = offset & 0x01FFFFFF;
+            int encodedOffset = (int)offset & 0x01FFFFFF;
 
         }
     }
