@@ -1,10 +1,13 @@
 public class Goto : Instruction.IInstruction
 {
-    private readonly int _offset;
+    private readonly int _offset = 0;
 
-    public Goto(int offset)
+    public Goto(int? offset)
     {
-        _offset = offset;
+        if (offset != null)
+        {
+            _offset = (int)offset;
+        }
     }
 
     public int Encode()

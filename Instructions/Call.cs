@@ -1,9 +1,12 @@
 public class Call : Instruction.IInstruction
 {
-    readonly int _offset;
-    public Call(int offset)
+    readonly int _offset = 0;
+    public Call(int? offset)
     {
-        _offset = offset & ~3;
+        if (offset != null)
+        {
+            _offset = (int)offset & ~3;
+        }
     }
 
     public int Encode()
