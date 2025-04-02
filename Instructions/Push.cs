@@ -2,7 +2,6 @@ public class Push : Instruction.IInstruction
 {
     private readonly int _value = 0;
 
-    // Need to add implementation that handles labels
     public Push(int? value)
     {
         if (value != null)

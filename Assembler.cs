@@ -99,6 +99,7 @@
                 "ifmi"    => new Ifmi(argOne),
                 "ifpl"    => new Ifpl(argOne),
                 "dup"     => new Dup(argOne),
+                "print"   => new Print(argOne),
                 // "printh"  => new Printh(argOne),
                 // "printo"  => new Printo(argOne),
                 // "printb"  => new Printb(argOne),
