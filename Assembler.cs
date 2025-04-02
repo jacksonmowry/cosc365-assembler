@@ -80,7 +80,7 @@
                 "or"      => new Or(),
                 "xor"     => new Xor(),
                 "lsl"     => new Lsl(),
-                "rsl"     => new Rsl(),
+                "lsr"     => new Lsr(),
                 "asr"     => new Asr(),
                 "neg"     => new Neg(),
                 "not"     => new Not(),
