@@ -55,7 +55,7 @@
             int? argTwo = Utils.ParseInt(source[i].Tokens.ElementAtOrDefault(2));
             // First argument is a string, try parsing a label
             int? offset = null;
-            int? labelAddress = null;
+            int labelAddress = -1;
             if (argOneStr != null && !argOne.HasValue) {
                 if (labelMap.TryGetValue(argOneStr, out labelAddress)) {
                     int currAddress = i * 4;
@@ -105,7 +105,7 @@
                 "printb"  => new Print(argOne, 'b'),
                 "dump"    => new Dump(),
                 "push" when argOne != null => new Push(argOne),
-                "push" when labelAddress != null => new Push(labelAddress),
+                "push" when labelAddress != -1 => new Push(labelAddress),
                 "push" => new Push(0),
                 _ => throw new Exception($"Unimplemented instruction {source[i].Tokens[0]}")
             };
