@@ -59,7 +59,7 @@
                 int labelAddress = 0;
                 if (labelMap.TryGetValue(argOneStr, out labelAddress)) {
                     int currAddress = i * 4;
-                    offset = labelAddress - (currAddress + 4);
+                    offset = labelAddress - currAddress;
                 }
             }
             Instruction.IInstruction ins = source[i].Tokens[0].ToLower() switch
