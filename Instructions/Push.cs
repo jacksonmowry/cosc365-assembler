@@ -12,6 +12,6 @@ public class Push : Instruction.IInstruction
 
     public int Encode()
     {
-        return (0b1111 << 28) | (_value & 0x0fffffff);
+        return (0b1111 << 28) | _value;
     }
 }

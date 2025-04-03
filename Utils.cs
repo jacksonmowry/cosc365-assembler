@@ -122,10 +122,10 @@ public class Utils {
             return null;
         }
 
-        // if (s.Length > 2 && s[0..2].Equals("0x"))
-        // {
-        //     return Convert.ToInt32(s, 16);
-        // }
+        if (s.Length > 2 && s[0..2].Equals("0x"))
+        {
+            return Convert.ToInt32(s, 16);
+        }
         if (int.TryParse(s, out int result)) {
             return result;
         }

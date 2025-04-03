@@ -51,7 +51,7 @@
             // In some cases, first argument can be a label
             string? argOneStr = source[i].Tokens.ElementAtOrDefault(1);
             // Try parsing arguments as integers
-            int? argOne = Utils.ParseInt(argOneStr);
+            int? argOne = Utils.ParseInt(source[i].Tokens.ElementAtOrDefault(1));
             int? argTwo = Utils.ParseInt(source[i].Tokens.ElementAtOrDefault(2));
             // First argument is a string, try parsing a label
             int? offset = null;
@@ -104,9 +104,7 @@
                 "printo"  => new Print(argOne, 'o'),
                 "printb"  => new Print(argOne, 'b'),
                 "dump"    => new Dump(),
-                "push" when argOne != null => new Push(argOne),
-                "push" when labelAddress != -1 => new Push(labelAddress),
-                "push" => new Push(0),
+                "push" => new Push(argOne),
                 _ => throw new Exception($"Unimplemented instruction {source[i].Tokens[0]}")
             };
 
