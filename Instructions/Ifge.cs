@@ -7,7 +7,6 @@ public class Ifge : Instruction.IInstruction
         if (offset != null)
         {
             encodedOffset = (int)offset;
-
         }
     }
     public int Encode()

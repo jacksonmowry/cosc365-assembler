@@ -7,7 +7,6 @@ public class Ifpl : Instruction.IInstruction
         if (offset != null)
         {
             encodedOffset = (int)offset;
-
         }
     }
     public int Encode()
