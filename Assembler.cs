@@ -51,7 +51,7 @@
             // In some cases, first argument can be a label
             string? argOneStr = source[i].Tokens.ElementAtOrDefault(1);
             // Try parsing arguments as integers
-            int? argOne = Utils.ParseInt(source[i].Tokens.ElementAtOrDefault(1));
+            int? argOne = Utils.ParseInt(argOneStr);
             int? argTwo = Utils.ParseInt(source[i].Tokens.ElementAtOrDefault(2));
             // First argument is a string, try parsing a label
             int? offset = null;
