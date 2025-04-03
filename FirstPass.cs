@@ -37,7 +37,7 @@ public class FirstPass
             // and this makes life a lot easier
             workingCopy = workingCopy.PadRight((workingCopy.Length % 3 == 0) ?
                                                    0 :
-                                                   workingCopy.Length + 3 - (workingCopy.Length % 3));
+                                                   workingCopy.Length + 3 - (workingCopy.Length % 3), (char)1);
 
             if (workingCopy.Length % 3 != 0)
             {
