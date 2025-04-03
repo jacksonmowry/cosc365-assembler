@@ -11,6 +11,6 @@ public class Call : Instruction.IInstruction
 
     public int Encode()
     {
-        return (0b0101 << 28) | _offset;
+        return (0b0101 << 28) | (_offset & 0x0FFFFFFF);
     }
 }
