@@ -6,12 +6,12 @@ public class Iflt : Instruction.IInstruction
     {
         if (offset != null)
         {
-            int encodedOffset = (int)offset & 0xFFFFFF;
+            encodedOffset = (int)offset;
 
         }
     }
     public int Encode()
     {
-        return (0b1000 << 28) |  (0b010 << 25) | encodedOffset;
+        return (0b1000 << 28) |  (0b010 << 25) | (encodedOffset  & 0xFFFFFF);
     }
 }

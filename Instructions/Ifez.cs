@@ -1,3 +1,5 @@
+using System.Globalization;
+
 public class Ifez : Instruction.IInstruction
 {
     private readonly int encodedOffset = 0;
@@ -6,12 +8,11 @@ public class Ifez : Instruction.IInstruction
     {
         if (offset != null)
         {
-            int encodedOffset = (int)offset & 0xFFFFFF;
-
+            encodedOffset = (int)offset;
         }
     }
     public int Encode()
     {
-        return (0b10010 << 28) | encodedOffset;
+        return (0b1001 << 28) | (encodedOffset & 0xFFFFFF);
     }
 }
