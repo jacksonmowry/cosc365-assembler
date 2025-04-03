@@ -6,7 +6,7 @@ public class Ifgt : Instruction.IInstruction
     {
         if (offset != null)
         {
-            int encodedOffset = (int)offset & 0x01FFFFFF;
+            int encodedOffset = (int)offset & 0xFFFFFF;
 
         }
     }

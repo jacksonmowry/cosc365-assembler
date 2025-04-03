@@ -6,12 +6,12 @@ public class Ifnz : Instruction.IInstruction
     {
         if (offset != null)
         {
-            int encodedOffset = (int)offset & 0x01FFFFFF;
+            int encodedOffset = (int)offset & 0xFFFFFF;
 
         }
     }
     public int Encode()
     {
-        return (0b10010 << 27) |  (0b01 << 25) | encodedOffset;
+        return (0b1001 << 28) | (0b01 << 25) | encodedOffset;
     }
 }
