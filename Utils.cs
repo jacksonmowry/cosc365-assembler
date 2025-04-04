@@ -15,7 +15,6 @@ public class Utils {
                 // Check if we're at the end of the string
                 if (i == s.Length - 1)
                 {
-                    Console.WriteLine(s);
                     throw new Exception("Cannot escape the last char of a string literal");
                 }
                 // Peek the following character to determine which escape sequence to form
