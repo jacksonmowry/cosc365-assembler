@@ -15,6 +15,7 @@ public class Utils {
                 // Check if we're at the end of the string
                 if (i == s.Length - 1)
                 {
+                    Console.WriteLine(s);
                     throw new Exception("Cannot escape the last char of a string literal");
                 }
                 // Peek the following character to determine which escape sequence to form
@@ -60,12 +61,12 @@ public class Utils {
         List<string> tokens = new List<string>();
         List<char> buffer = new List<char>();
 
-        foreach (char c in s)
+        for (int i = 0; i < s.Length; i++)
         {
             switch (ts)
             {
                 case TokenizerState.Normal:
-                    if (c == '"')
+                    if (s[i] == '"')
                     {
                         if (buffer.Count != 0)
                         {
@@ -75,7 +76,7 @@ public class Utils {
 
                         ts = TokenizerState.InsideString;
                     }
-                    else if (_lineDelimiters.Contains(c))
+                    else if (_lineDelimiters.Contains(s[i]))
                     {
                         if (buffer.Count != 0)
                         {
@@ -85,11 +86,11 @@ public class Utils {
                     }
                     else
                     {
-                        buffer.Add(c);
+                        buffer.Add(s[i]);
                     }
                     break;
                 case TokenizerState.InsideString:
-                    if (c == '"')
+                    if (s[i] == '"' && i != 0 && s[i - 1] != '\\')
                     {
                         if (buffer.Count != 0)
                         {
@@ -101,7 +102,7 @@ public class Utils {
                     }
                     else
                     {
-                        buffer.Add(c);
+                        buffer.Add(s[i]);
                     }
                     break;
             }
@@ -126,6 +127,7 @@ public class Utils {
         {
             return Convert.ToInt32(s, 16);
         }
+
         if (int.TryParse(s, out int result)) {
             return result;
         }
