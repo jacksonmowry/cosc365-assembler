@@ -124,7 +124,17 @@ public class Utils {
 
         if (s.Length > 2 && s[0..2].Equals("0x"))
         {
-            return Convert.ToInt32(s, 16);
+            int val = 0;
+            try
+            {
+                val = Convert.ToInt32(s, 16);
+            }
+            catch (Exception e)
+            {
+                Console.Write(s + ": ");
+                Console.WriteLine(e.Message);
+            }
+            return val;
         }
 
         if (int.TryParse(s, out int result)) {
