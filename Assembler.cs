@@ -15,7 +15,8 @@
         List<AssemblerLine> source = new List<AssemblerLine>();
         int dummyPC = 0;
 
-        try {
+        try
+        {
             using (StreamReader sr = new StreamReader(inputFile, System.Text.Encoding.ASCII))
             {
                 string? line;
@@ -42,7 +43,8 @@
                 }
             }
         }
-        catch (Exception e) {
+        catch (Exception e)
+        {
             Console.WriteLine(e.Message);
         }
 
@@ -51,6 +53,11 @@
         List<Instruction.IInstruction> instructionsList = new List<Instruction.IInstruction>();
         // Regular for-loop because we need `i` to keep track of the program counter
         // You'll need to for branch/goto instructions
+        if (source.Count() < 1)
+        {
+            Console.WriteLine("ERROR: " + inputFile + ": no instructions to assemble.");
+            return;
+        }
         for (int i = 0; i < source.Count(); i++)
         {
             // In some cases, first argument can be a label
