@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+dotnet build
+
 for file in test_asm/*.asm; do
     echo "Testing: ${file_name}"
 
@@ -7,7 +9,7 @@ for file in test_asm/*.asm; do
 
     tmp=$(mktemp)
 
-    dotnet run -- "${file}" "${tmp}"
+    bin/Debug/net8.0/assembler "${file}" "${tmp}"
 
     diff -s "${file_name}.v" "${tmp}"
 
