@@ -60,6 +60,8 @@
                 if (labelMap.TryGetValue(argOneStr, out labelAddress)) {
                     int currAddress = i * 4;
                     offset = labelAddress - currAddress;
+                } else {
+                    System.Console.WriteLine($"Invalid label: The given key '{argOneStr}' was not present in the dictionary.");
                 }
             }
             Instruction.IInstruction ins = source[i].Tokens[0].ToLower() switch
