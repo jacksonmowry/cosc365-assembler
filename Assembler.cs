@@ -63,64 +63,83 @@
             // In some cases, first argument can be a label
             string? argOneStr = source[i].Tokens.ElementAtOrDefault(1);
             // Try parsing arguments as integers
-            int? argOne = Utils.ParseInt(argOneStr);
-            int? argTwo = Utils.ParseInt(source[i].Tokens.ElementAtOrDefault(2));
+            //
+            int? argOne = null;
+            int? argTwo = null; try
+            {
+                argOne = Utils.ParseInt(argOneStr);
+                argTwo = Utils.ParseInt(source[i].Tokens.ElementAtOrDefault(2));
+            }
+            catch (Exception)
+            {
+                return;
+            }
             // First argument is a string, try parsing a label
             int? offset = null;
             int labelAddress = -1;
-            if (argOneStr != null && !argOne.HasValue) {
-                if (labelMap.TryGetValue(argOneStr, out labelAddress)) {
+            if (argOneStr != null && !argOne.HasValue)
+            {
+                if (labelMap.TryGetValue(argOneStr, out labelAddress))
+                {
                     int currAddress = i * 4;
                     offset = labelAddress - currAddress;
-                } else {
+                }
+                else
+                {
                     System.Console.WriteLine($"Invalid label: The given key '{argOneStr}' was not present in the dictionary.");
                 }
             }
-            Instruction.IInstruction ins = source[i].Tokens[0].ToLower() switch
+            Instruction.IInstruction ins;
+            try {
+            ins = source[i].Tokens[0].ToLower() switch
             {
-                "exit"    => new Exit(argOne),
-                "swap"    => new Swap(argOne, argTwo),
-                "nop"     => new Nop(),
-                "input"   => new Input(),
+                "exit" => new Exit(argOne),
+                "swap" => new Swap(argOne, argTwo),
+                "nop" => new Nop(),
+                "input" => new Input(),
                 "stinput" => new StInput(argOne),
-                "debug"   => new Debug(argOne),
-                "pop"     => new Pop(argOne),
-                "add"     => new Add(),
-                "sub"     => new Sub(),
-                "mul"     => new Mul(),
-                "div"     => new Div(),
-                "rem"     => new Rem(),
-                "and"     => new And(),
-                "or"      => new Or(),
-                "xor"     => new Xor(),
-                "lsl"     => new Lsl(),
-                "lsr"     => new Lsr(),
-                "asr"     => new Asr(),
-                "neg"     => new Neg(),
-                "not"     => new Not(),
+                "debug" => new Debug(argOne),
+                "pop" => new Pop(argOne),
+                "add" => new Add(),
+                "sub" => new Sub(),
+                "mul" => new Mul(),
+                "div" => new Div(),
+                "rem" => new Rem(),
+                "and" => new And(),
+                "or" => new Or(),
+                "xor" => new Xor(),
+                "lsl" => new Lsl(),
+                "lsr" => new Lsr(),
+                "asr" => new Asr(),
+                "neg" => new Neg(),
+                "not" => new Not(),
                 "stprint" => new Stprint(argOne),
-                "call"    => new Call(offset),
-                "return"  => new Return(argOne),
-                "goto"    => new Goto(offset),
-                "ifeq"    => new Ifeq(offset),
-                "ifne"    => new Ifne(offset),
-                "iflt"    => new Iflt(offset),
-                "ifgt"    => new Ifgt(offset),
-                "ifle"    => new Ifle(offset),
-                "ifge"    => new Ifge(offset),
-                "ifez"    => new Ifez(offset),
-                "ifnz"    => new Ifnz(offset),
-                "ifmi"    => new Ifmi(offset),
-                "ifpl"    => new Ifpl(offset),
-                "dup"     => new Dup(argOne),
-                "print"   => new Print(argOne, 'd'),
-                "printh"  => new Print(argOne, 'h'),
-                "printo"  => new Print(argOne, 'o'),
-                "printb"  => new Print(argOne, 'b'),
-                "dump"    => new Dump(),
+                "call" => new Call(offset),
+                "return" => new Return(argOne),
+                "goto" => new Goto(offset),
+                "ifeq" => new Ifeq(offset),
+                "ifne" => new Ifne(offset),
+                "iflt" => new Iflt(offset),
+                "ifgt" => new Ifgt(offset),
+                "ifle" => new Ifle(offset),
+                "ifge" => new Ifge(offset),
+                "ifez" => new Ifez(offset),
+                "ifnz" => new Ifnz(offset),
+                "ifmi" => new Ifmi(offset),
+                "ifpl" => new Ifpl(offset),
+                "dup" => new Dup(argOne),
+                "print" => new Print(argOne, 'd'),
+                "printh" => new Print(argOne, 'h'),
+                "printo" => new Print(argOne, 'o'),
+                "printb" => new Print(argOne, 'b'),
+                "dump" => new Dump(),
                 "push" => new Push(argOne),
-                _ => throw new Exception($"Unimplemented instruction {source[i].Tokens[0]}")
+                _ => throw new Exception($"Unknown instruction: {source[i].Tokens[0].ToLower()}"),
             };
+            } catch (Exception e) {
+                System.Console.WriteLine(e.Message);
+                return;
+            }
 
             instructionsList.Add(ins);
         }

@@ -133,6 +133,7 @@ public class Utils {
             {
                 Console.Write(s + ": ");
                 Console.WriteLine(e.Message);
+                throw new Exception();
             }
             return val;
         }
