@@ -15,30 +15,35 @@
         List<AssemblerLine> source = new List<AssemblerLine>();
         int dummyPC = 0;
 
-        using (StreamReader sr = new StreamReader(inputFile, System.Text.Encoding.ASCII))
-        {
-            string? line;
-
-            while ((line = sr.ReadLine()) != null)
+        try {
+            using (StreamReader sr = new StreamReader(inputFile, System.Text.Encoding.ASCII))
             {
-                (AssemblerLine[]? instructions, bool label) = FirstPass.ProcessOneLine(line.Trim());
-                if (instructions == null || instructions.Length == 0)
-                {
-                    // The line is likely a comment or just blank
-                    continue;
-                }
+                string? line;
 
-                if (label)
+                while ((line = sr.ReadLine()) != null)
                 {
-                    // A label, just use the existing PC
-                    labelMap.Add(instructions[0].OriginalLine, dummyPC);
-                    continue;
-                }
+                    (AssemblerLine[]? instructions, bool label) = FirstPass.ProcessOneLine(line.Trim());
+                    if (instructions == null || instructions.Length == 0)
+                    {
+                        // The line is likely a comment or just blank
+                        continue;
+                    }
 
-                // If we get here we have 1 or more valid instructions to add
-                dummyPC += instructions.Length * 4;
-                source.AddRange(instructions);
+                    if (label)
+                    {
+                        // A label, just use the existing PC
+                        labelMap.Add(instructions[0].OriginalLine, dummyPC);
+                        continue;
+                    }
+
+                    // If we get here we have 1 or more valid instructions to add
+                    dummyPC += instructions.Length * 4;
+                    source.AddRange(instructions);
+                }
             }
+        }
+        catch (Exception e) {
+            Console.WriteLine(e.Message);
         }
 
         // First pass should be done now
