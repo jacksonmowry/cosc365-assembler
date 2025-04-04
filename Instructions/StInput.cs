@@ -1,6 +1,6 @@
 public class StInput : Instruction.IInstruction
 {
-    private readonly int _maxChars = 0xfffff;
+    private readonly int _maxChars = 0xffffff;
 
     public StInput(int? maxChars)
     {

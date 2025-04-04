@@ -1,18 +1,18 @@
 public class Swap : Instruction.IInstruction
 {
-    private readonly int _from = 4;
+    private readonly int _from = 4 >> 2;
     private readonly int _to = 0;
 
     public Swap(int? from_, int? to)
     {
         if (from_ != null)
         {
-            _from = (int)from_;
+            _from = (int)from_ >> 2;
         }
 
         if (to != null)
         {
-            _to = (int)to;
+            _to = (int)to >> 2;
         }
     }
 

@@ -12,6 +12,6 @@ public class Dup : Instruction.IInstruction
 
     public int Encode()
     {
-        return (0b1100 << 28) | _offset;
+        return (0b1100 << 28) | (_offset & 0x0FFFFFFF);
     }
 }

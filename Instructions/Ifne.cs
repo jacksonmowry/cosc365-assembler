@@ -11,6 +11,6 @@ public class Ifne : Instruction.IInstruction
     }
     public int Encode()
     {
-        return (0b1000 << 28) | (0b001 << 25) | (encodedOffset  & 0xFFFFFF);
+        return (0b1000 << 28) | (0b001 << 25) | (encodedOffset  & 0x1FFFFFF);
     }
 }

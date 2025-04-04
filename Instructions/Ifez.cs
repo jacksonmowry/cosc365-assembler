@@ -13,6 +13,6 @@ public class Ifez : Instruction.IInstruction
     }
     public int Encode()
     {
-        return (0b1001 << 28) | (encodedOffset & 0xFFFFFF);
+        return (0b1001 << 28) | (encodedOffset & 0x1FFFFFF);
     }
 }
