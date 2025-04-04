@@ -27,10 +27,10 @@ TopLoop:
     # is pointing to the result.
     add
     # ifle looks at the top two values on the stack and
-    # compares them. The iterator is first (left) and the
-    # target is second (right), so this is
-    # i <= target
-    ifle    TopLoop
+    # compares them. The target is first (left) and the
+    # iteration is second (right), so this is
+    # target >= iteration
+    ifge    TopLoop
 
 BottomLoop:
     goto    Exit
