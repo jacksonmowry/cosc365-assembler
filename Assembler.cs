@@ -23,7 +23,14 @@
 
                 while ((line = sr.ReadLine()) != null)
                 {
-                    (AssemblerLine[]? instructions, bool label) = FirstPass.ProcessOneLine(line.Trim());
+                    AssemblerLine[]? instructions;
+                    bool label;
+                    try {
+                        (instructions, label) = FirstPass.ProcessOneLine(line.Trim());
+                    } catch (Exception e) {
+                        System.Console.WriteLine(e.Message);
+                        return;
+                    }
                     if (instructions == null || instructions.Length == 0)
                     {
                         // The line is likely a comment or just blank

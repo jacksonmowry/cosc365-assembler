@@ -18,7 +18,15 @@ public class FirstPass
         }
 
         // Split the entire line by whitespace, then we can determine if it is a label or not
-        string[] tokens = Utils.TokenizeString(line);
+        string[] tokens;
+        try
+        {
+            tokens = Utils.TokenizeString(line);
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
 
         // A label ends with ':'
         if (tokens[0].Last() == ':')

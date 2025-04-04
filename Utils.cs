@@ -110,6 +110,8 @@ public class Utils {
         if (ts == TokenizerState.Normal && buffer.Count != 0)
         {
             tokens.Add(new string(buffer.ToArray()));
+        } else if (ts == TokenizerState.InsideString) {
+            throw new Exception($"Malformed string (unterminated \"?)");
         }
 
         return tokens.ToArray();
